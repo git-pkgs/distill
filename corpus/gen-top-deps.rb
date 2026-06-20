@@ -40,11 +40,16 @@ out.puts
 REGISTRIES.each do |reg|
   warn "fetching #{reg}..."
   out.puts "# #{reg}"
-  fetch(reg, PER_REGISTRY).each do |pkg|
+  # Over-fetch then keep the first PER_REGISTRY that have a repo URL, since
+  # distill needs source to clone (nuget in particular has many repo-less entries).
+  kept = 0
+  fetch(reg, PER_REGISTRY * 2).each do |pkg|
     purl = pkg["purl"]
     repo = pkg["repository_url"]
-    next if purl.nil? || purl.empty?
-    out.puts [purl, repo].compact.join("\t")
+    next if purl.nil? || purl.empty? || repo.nil? || repo.empty?
+    out.puts "#{purl}\t#{repo}"
+    kept += 1
+    break if kept >= PER_REGISTRY
   end
   out.puts
 rescue => e

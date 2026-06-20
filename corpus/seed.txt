@@ -1,5 +1,5 @@
 # Merged corpus seed: top-deps.txt + knowledge.txt, deduped on repo URL.
-# Generated 2026-06-20. 812 entries.
+# Generated 2026-06-20. 803 entries.
 # examples.txt excluded (unresolved bare names).
 
 https://bitbucket.org/snakeyaml/snakeyaml
@@ -27,7 +27,6 @@ https://github.com/PyCQA/bandit
 https://github.com/QwikDev/qwik
 https://github.com/Redocly/redoc
 https://github.com/SWI-Prolog/swipl-devel
-https://github.com/SeleniumHQ/selenium
 https://github.com/Shopify/liquid
 https://github.com/TypeStrong/typedoc
 https://github.com/Unleash/unleash
@@ -103,7 +102,6 @@ https://github.com/docsifyjs/docsify
 https://github.com/dom4j/dom4j
 https://github.com/dotansimha/graphql-code-generator
 https://github.com/dotnet/fsharp
-https://github.com/dotnet/roslyn-analyzers
 https://github.com/doxygen/doxygen
 https://github.com/dprint/dprint
 https://github.com/drizzle-team/drizzle-orm
@@ -217,7 +215,6 @@ https://github.com/liquibase/liquibase
 https://github.com/locustio/locust
 https://github.com/lostisland/faraday
 https://github.com/lsegal/yard
-https://github.com/lxml/lxml
 https://github.com/magefile/mage
 https://github.com/mde/ejs
 https://github.com/mesonbuild/meson
@@ -499,9 +496,7 @@ pkg:gem/arel
 pkg:gem/builder
 pkg:gem/coffee-rails
 pkg:gem/coffee-script
-pkg:gem/coffee-script-source
 pkg:gem/concurrent-ruby
-pkg:gem/erubis
 pkg:gem/execjs
 pkg:gem/ffi
 pkg:gem/i18n
@@ -509,6 +504,7 @@ pkg:gem/jbuilder
 pkg:gem/jquery-rails
 pkg:gem/json
 pkg:gem/listen
+pkg:gem/loofah
 pkg:gem/mail
 pkg:gem/method_source
 pkg:gem/mime-types
@@ -519,6 +515,7 @@ pkg:gem/nokogiri
 pkg:gem/public_suffix
 pkg:gem/rack
 pkg:gem/rack-test
+pkg:gem/rails-dom-testing
 pkg:gem/rake
 pkg:gem/rb-fsevent
 pkg:gem/rb-inotify
@@ -649,11 +646,8 @@ pkg:maven/commons-io/commons-io
 pkg:maven/commons-lang/commons-lang
 pkg:maven/io.springfox/springfox-swagger2
 pkg:maven/javax.servlet/javax.servlet-api
-pkg:maven/javax.servlet/jstl
-pkg:maven/javax.servlet/servlet-api
 pkg:maven/junit/junit
 pkg:maven/log4j/log4j
-pkg:maven/mysql/mysql-connector-java
 pkg:maven/org.apache.commons/commons-lang3
 pkg:maven/org.apache.httpcomponents/httpclient
 pkg:maven/org.hibernate/hibernate-core
@@ -662,6 +656,7 @@ pkg:maven/org.junit.jupiter/junit-jupiter-engine
 pkg:maven/org.mockito/mockito-core
 pkg:maven/org.postgresql/postgresql
 pkg:maven/org.projectlombok/lombok
+pkg:maven/org.seleniumhq.selenium/selenium-java
 pkg:maven/org.slf4j/slf4j-api
 pkg:maven/org.springframework.boot/spring-boot-starter-test
 pkg:maven/org.springframework.security/spring-security-test
@@ -702,53 +697,50 @@ pkg:npm/vary
 pkg:npm/wrap-ansi
 pkg:npm/yargs
 pkg:npm/yargs-parser
-pkg:nuget/angularjs
+pkg:nuget/bodi
 pkg:nuget/bootstrap
 pkg:nuget/cef.redist.x64
 pkg:nuget/coverlet.collector
-pkg:nuget/dotnetseleniumextras.waithelpers
-pkg:nuget/elmah
-pkg:nuget/elmah.corelibrary
-pkg:nuget/entityframework.es
-pkg:nuget/entityframework.ru
-pkg:nuget/jquery
-pkg:nuget/jquery.datatables
-pkg:nuget/knockoutjs
+pkg:nuget/dataannotationsextensions
+pkg:nuget/dotless
+pkg:nuget/facebook
 pkg:nuget/log4net
-pkg:nuget/microsoft.applicationinsights.agent.intercept
-pkg:nuget/microsoft.applicationinsights.javascript
-pkg:nuget/microsoft.aspnet.membership.openauth
-pkg:nuget/microsoft.aspnet.providers.core
+pkg:nuget/mahapps.metro.resources
+pkg:nuget/masstransit.aspnetcore
 pkg:nuget/microsoft.aspnet.telemetrycorrelation
-pkg:nuget/microsoft.aspnet.web.optimization
-pkg:nuget/microsoft.aspnet.web.optimization.ru
-pkg:nuget/microsoft.aspnet.web.optimization.webforms
+pkg:nuget/microsoft.aspnetcore.blazor.build
 pkg:nuget/microsoft.azure.functions.extensions
-pkg:nuget/microsoft.data.services.client
-pkg:nuget/microsoft.sqlserver.compact
-pkg:nuget/microsoft.visualstudio.debugger.contracts
+pkg:nuget/microsoft.codeanalysis.versioncheckanalyzer
 pkg:nuget/mongocsharpdriver
+pkg:nuget/moq
 pkg:nuget/morelinq
+pkg:nuget/npgsql.entityframeworkcore.postgresql.design
 pkg:nuget/nunit
+pkg:nuget/nunit.extension.nunitprojectloader
 pkg:nuget/owin
-pkg:nuget/popper.js
+pkg:nuget/pomelo.jsonobject
+pkg:nuget/prometheus-net
 pkg:nuget/protobuf-net
 pkg:nuget/rhinomocks
+pkg:nuget/selenium.firefox.webdriver
 pkg:nuget/serilog.sinks.async
 pkg:nuget/should
 pkg:nuget/sqlite-net-pcl
 pkg:nuget/structuremap
-pkg:nuget/toastr
+pkg:nuget/underscore.js
 pkg:nuget/unity.mvc
+pkg:nuget/unity.mvc5
+pkg:nuget/unity.webapi
 pkg:nuget/xunit
 pkg:nuget/xunit.analyzers
 pkg:nuget/xunit.runner.visualstudio
+pkg:nuget/xunit.skippablefact
 pkg:pub/archive
 pkg:pub/charcode
 pkg:pub/cupertino_icons
 pkg:pub/ffi
-pkg:pub/flutter
 pkg:pub/http_parser
+pkg:pub/image
 pkg:pub/intl
 pkg:pub/matcher
 pkg:pub/material_color_utilities
@@ -759,14 +751,12 @@ pkg:pub/pedantic
 pkg:pub/petitparser
 pkg:pub/provider
 pkg:pub/quiver
-pkg:pub/sky_engine
 pkg:pub/stack_trace
 pkg:pub/vector_math
 pkg:pub/win32
 pkg:pub/xml
 pkg:pypi/asgiref
 pkg:pypi/attrs
-pkg:pypi/beautifulsoup4
 pkg:pypi/certifi
 pkg:pypi/cffi
 pkg:pypi/chardet
@@ -786,6 +776,7 @@ pkg:pypi/ipython
 pkg:pypi/isort
 pkg:pypi/itsdangerous
 pkg:pypi/jinja2
+pkg:pypi/lxml
 pkg:pypi/matplotlib
 pkg:pypi/mccabe
 pkg:pypi/numpy

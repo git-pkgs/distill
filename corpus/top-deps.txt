@@ -78,7 +78,6 @@ pkg:pypi/colorama	https://github.com/tartley/colorama
 pkg:pypi/psycopg2	https://github.com/psycopg/psycopg2
 pkg:pypi/cffi	https://github.com/python-cffi/cffi
 pkg:pypi/pycparser	https://github.com/eliben/pycparser
-pkg:pypi/beautifulsoup4
 pkg:pypi/flake8	https://github.com/pycqa/flake8
 pkg:pypi/asgiref	https://github.com/django/asgiref
 pkg:pypi/scikit-learn	https://github.com/scikit-learn/scikit-learn
@@ -104,6 +103,7 @@ pkg:pypi/typing-extensions	https://github.com/python/typing_extensions
 pkg:pypi/pycodestyle	https://github.com/PyCQA/pycodestyle
 pkg:pypi/flask	https://github.com/pallets/flask
 pkg:pypi/pylint	https://github.com/pylint-dev/pylint
+pkg:pypi/lxml	https://github.com/lxml/lxml
 
 # rubygems.org
 pkg:gem/i18n	https://github.com/ruby-i18n/i18n
@@ -118,7 +118,6 @@ pkg:gem/rack	https://github.com/rack/rack
 pkg:gem/execjs	https://github.com/rails/execjs
 pkg:gem/ffi	https://github.com/ffi/ffi
 pkg:gem/coffee-script	https://github.com/rails/ruby-coffee-script
-pkg:gem/coffee-script-source
 pkg:gem/rack-test	https://github.com/rack/rack-test
 pkg:gem/thor	https://github.com/rails/thor
 pkg:gem/builder	https://github.com/rails/builder
@@ -150,12 +149,13 @@ pkg:gem/tzinfo-data	https://github.com/tzinfo/tzinfo-data
 pkg:gem/coffee-rails	https://github.com/rails/coffee-rails
 pkg:gem/jbuilder	https://github.com/rails/jbuilder
 pkg:gem/actionview	https://github.com/rails/rails
-pkg:gem/erubis
 pkg:gem/jquery-rails	https://github.com/rails/jquery-rails
 pkg:gem/method_source	https://github.com/banister/method_source
 pkg:gem/sqlite3	https://github.com/sparklemotion/sqlite3-ruby
 pkg:gem/sass-listen	https://github.com/sass/listen
 pkg:gem/turbolinks	https://github.com/turbolinks/turbolinks-rails
+pkg:gem/loofah	https://github.com/flavorjones/loofah
+pkg:gem/rails-dom-testing	https://github.com/rails/rails-dom-testing
 
 # crates.io
 pkg:cargo/libc	https://github.com/rust-lang/libc
@@ -166,8 +166,8 @@ pkg:cargo/syn	https://github.com/dtolnay/syn
 pkg:cargo/proc-macro2	https://github.com/dtolnay/proc-macro2
 pkg:cargo/bitflags	https://github.com/bitflags/bitflags
 pkg:cargo/lazy_static	https://github.com/rust-lang-nursery/lazy-static.rs
-pkg:cargo/winapi-i686-pc-windows-gnu	https://github.com/retep998/winapi-rs
 pkg:cargo/winapi-x86_64-pc-windows-gnu	https://github.com/retep998/winapi-rs
+pkg:cargo/winapi-i686-pc-windows-gnu	https://github.com/retep998/winapi-rs
 pkg:cargo/log	https://github.com/rust-lang/log
 pkg:cargo/serde	https://github.com/serde-rs/serde
 pkg:cargo/autocfg	https://github.com/cuviper/autocfg
@@ -265,7 +265,6 @@ pkg:golang/github.com/google/gofuzz	https://github.com/google/gofuzz
 pkg:maven/junit/junit	https://github.com/junit-team/junit4
 pkg:maven/org.springframework.boot/spring-boot-starter-test	https://github.com/spring-projects/spring-boot
 pkg:maven/org.springframework.boot/spring-boot-starter-web	https://github.com/spring-projects/spring-boot
-pkg:maven/mysql/mysql-connector-java	
 pkg:maven/org.projectlombok/lombok	https://github.com/projectlombok/lombok
 pkg:maven/org.springframework.boot/spring-boot-starter-data-jpa	https://github.com/spring-projects/spring-boot
 pkg:maven/org.slf4j/slf4j-api	https://github.com/qos-ch/slf4j
@@ -288,9 +287,7 @@ pkg:maven/org.postgresql/postgresql	https://github.com/pgjdbc/pgjdbc
 pkg:maven/org.springframework.boot/spring-boot-starter-actuator	https://github.com/spring-projects/spring-boot
 pkg:maven/org.springframework/spring-core	https://github.com/spring-projects/spring-framework
 pkg:maven/org.springframework/spring-test	https://github.com/spring-projects/spring-framework
-pkg:maven/javax.servlet/jstl	
 pkg:maven/org.springframework/spring-web	https://github.com/spring-projects/spring-framework
-pkg:maven/javax.servlet/servlet-api	
 pkg:maven/org.hibernate/hibernate-core	https://github.com/hibernate/hibernate-orm
 pkg:maven/org.mockito/mockito-core	https://github.com/mockito/mockito
 pkg:maven/ch.qos.logback/logback-classic	https://github.com/qos-ch/logback
@@ -312,6 +309,9 @@ pkg:maven/org.springframework.boot/spring-boot-starter-validation	https://github
 pkg:maven/commons-lang/commons-lang	http://svn.apache.org/viewvc/commons/proper/lang/branches/LANG_2_X
 pkg:maven/org.springframework/spring-tx	https://github.com/spring-projects/spring-framework
 pkg:maven/io.springfox/springfox-swagger-ui	https://github.com/springfox/springfox
+pkg:maven/org.seleniumhq.selenium/selenium-java	https://github.com/SeleniumHQ/selenium
+pkg:maven/org.slf4j/jcl-over-slf4j	https://github.com/qos-ch/slf4j
+pkg:maven/com.squareup.retrofit2/converter-gson	https://github.com/square/retrofit
 
 # packagist.org
 pkg:composer/phpunit/phpunit	https://github.com/sebastianbergmann/phpunit
@@ -367,55 +367,55 @@ pkg:composer/league/flysystem	https://github.com/thephpleague/flysystem
 
 # nuget.org
 pkg:nuget/bootstrap	https://github.com/twbs/bootstrap
-pkg:nuget/microsoft.aspnet.web.optimization	
 pkg:nuget/xunit	https://github.com/xunit/xunit
 pkg:nuget/xunit.runner.visualstudio	https://github.com/xunit/visualstudio.xunit
 pkg:nuget/owin	https://github.com/owin-contrib/owin-hosting
 pkg:nuget/coverlet.collector	https://github.com/coverlet-coverage/coverlet
 pkg:nuget/log4net	https://github.com/apache/logging-log4net
-pkg:nuget/knockoutjs	
-pkg:nuget/microsoft.applicationinsights.agent.intercept	
 pkg:nuget/xunit.assert	https://github.com/xunit/xunit
 pkg:nuget/xunit.core	https://github.com/xunit/xunit
-pkg:nuget/popper.js	
-pkg:nuget/microsoft.aspnet.providers.core	
 pkg:nuget/nunit	https://github.com/nunit/nunit
 pkg:nuget/microsoft.aspnet.telemetrycorrelation	https://github.com/aspnet/Microsoft.AspNet.TelemetryCorrelation
-pkg:nuget/microsoft.data.services.client	
 pkg:nuget/xunit.extensibility.core	https://github.com/xunit/xunit
 pkg:nuget/xunit.abstractions	https://github.com/xunit/xunit
 pkg:nuget/xunit.extensibility.execution	https://github.com/xunit/xunit
-pkg:nuget/microsoft.aspnet.web.optimization.webforms	
-pkg:nuget/microsoft.applicationinsights.javascript	
 pkg:nuget/xunit.analyzers	https://github.com/xunit/xunit.analyzers
 pkg:nuget/coverlet.msbuild	https://github.com/coverlet-coverage/coverlet
-pkg:nuget/microsoft.sqlserver.compact	
 pkg:nuget/mongocsharpdriver	https://github.com/mongodb/mongo-csharp-driver
 pkg:nuget/protobuf-net	https://github.com/protobuf-net/protobuf-net
 pkg:nuget/xunit.extensions	https://github.com/xunit/xunit
 pkg:nuget/rhinomocks	https://github.com/meisinger/rhino-mocks
-pkg:nuget/angularjs	
 pkg:nuget/sqlite-net-pcl	https://github.com/praeclarum/sqlite-net
 pkg:nuget/xunit.runner.console	https://github.com/xunit/xunit
-pkg:nuget/microsoft.visualstudio.debugger.contracts
-pkg:nuget/microsoft.aspnet.web.optimization.ru	
 pkg:nuget/serilog.sinks.async	https://github.com/serilog/serilog-sinks-async
-pkg:nuget/elmah.corelibrary	
 pkg:nuget/structuremap	https://github.com/structuremap/structuremap
-pkg:nuget/jquery.datatables	
-pkg:nuget/toastr	
-pkg:nuget/entityframework.ru	
 pkg:nuget/microsoft.azure.functions.extensions	https://github.com/Azure/azure-functions-dotnet-extensions
-pkg:nuget/entityframework.es	
 pkg:nuget/cef.redist.x64	https://github.com/cefsharp/cef-binary
 pkg:nuget/cef.redist.x86	https://github.com/cefsharp/cef-binary
-pkg:nuget/microsoft.aspnet.membership.openauth	
-pkg:nuget/elmah	
 pkg:nuget/unity.mvc	https://github.com/unitycontainer/aspnet-mvc
 pkg:nuget/should	https://github.com/erichexter/Should
 pkg:nuget/morelinq	https://github.com/morelinq/MoreLINQ
-pkg:nuget/jquery	
-pkg:nuget/dotnetseleniumextras.waithelpers	
+pkg:nuget/facebook	https://github.com/facebook-csharp-sdk/facebook-csharp-sdk
+pkg:nuget/nunit.extension.nunitprojectloader	https://github.com/nunit/nunit-project-loader
+pkg:nuget/npgsql.entityframeworkcore.postgresql.design	https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL
+pkg:nuget/unity.webapi	https://github.com/devtrends/Unity.WebAPI
+pkg:nuget/pomelo.jsonobject	https://github.com/PomeloFoundation/Pomelo.JsonObject
+pkg:nuget/xunit.skippablefact	https://github.com/AArnott/Xunit.SkippableFact
+pkg:nuget/bodi	https://github.com/gasparnagy/BoDi
+pkg:nuget/microsoft.codeanalysis.versioncheckanalyzer	https://github.com/dotnet/roslyn-analyzers
+pkg:nuget/selenium.firefox.webdriver	https://github.com/jbaranda/nupkg-selenium-webdrivers
+pkg:nuget/masstransit.aspnetcore	https://github.com/Massient/MassTransit
+pkg:nuget/unity.mvc5	https://github.com/devtrends/Unity.Mvc5
+pkg:nuget/microsoft.aspnetcore.blazor.build	https://github.com/aspnet/AspNetCore
+pkg:nuget/mahapps.metro.resources	https://github.com/MahApps/MahApps.Metro.Resources
+pkg:nuget/structuremap.web	https://github.com/structuremap/structuremap
+pkg:nuget/underscore.js	https://github.com/documentcloud/underscore
+pkg:nuget/xunit.runners	https://github.com/xunit/xunit
+pkg:nuget/prometheus-net	https://github.com/prometheus-net/prometheus-net
+pkg:nuget/dotless	https://github.com/dotless/dotless
+pkg:nuget/sqlite-net	https://github.com/praeclarum/sqlite-net
+pkg:nuget/dataannotationsextensions	https://github.com/srkirkland/DataAnnotationsExtensions
+pkg:nuget/moq	https://github.com/moq/moq
 
 # hex.pm
 pkg:hex/phoenix	https://github.com/phoenixframework/phoenix
@@ -484,13 +484,11 @@ pkg:pub/stream_channel	https://github.com/dart-lang/tools
 pkg:pub/boolean_selector	https://github.com/dart-lang/tools
 pkg:pub/vector_math	https://github.com/flutter/core-packages
 pkg:pub/test_api	https://github.com/dart-lang/test
-pkg:pub/sky_engine	
 pkg:pub/typed_data	https://github.com/dart-lang/core
 pkg:pub/charcode	https://github.com/lrhn/charcode
 pkg:pub/clock	https://github.com/dart-lang/tools
 pkg:pub/fake_async	https://github.com/dart-lang/test
 pkg:pub/characters	https://github.com/dart-lang/core
-pkg:pub/flutter	
 pkg:pub/flutter_lints	https://github.com/flutter/packages
 pkg:pub/lints	https://github.com/dart-lang/core
 pkg:pub/http_parser	https://github.com/dart-lang/http
@@ -520,4 +518,6 @@ pkg:pub/provider	https://github.com/rrousselGit/provider
 pkg:pub/archive	https://github.com/brendan-duncan/archive
 pkg:pub/yaml	https://github.com/dart-lang/tools
 pkg:pub/path_provider_macos	https://github.com/flutter/plugins
+pkg:pub/image	https://github.com/brendan-duncan/image
+pkg:pub/logging	https://github.com/dart-lang/core
 

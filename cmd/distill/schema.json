@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "facet": {
+            "type": "string",
+            "enum": ["domain", "role", "function", "layer", "technology", "audience"]
+          },
+          "term": {
+            "type": "string",
+            "description": "Must be one of the allowed terms for the chosen facet."
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Specific dependency, import, symbol, file path or manifest entry that justifies this tag."
+          },
+          "evidence_kind": {
+            "type": "string",
+            "enum": ["dependency", "import", "symbol", "file", "manifest", "readme"]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          }
+        },
+        "required": ["facet", "term", "evidence", "evidence_kind", "confidence"],
+        "additionalProperties": false
+      }
+    },
+    "unclassified": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Aspects of the package that should be tagged but no allowed term fits."
+    }
+  },
+  "required": ["tags", "unclassified"],
+  "additionalProperties": false
+}

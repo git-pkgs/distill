@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	_ "embed"
 	"encoding/json"
@@ -8,29 +9,27 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"strings"
 	"time"
 
-	"github.com/anthropics/anthropic-sdk-go"
 	"github.com/git-pkgs/enrichment"
-	"github.com/git-pkgs/purl"
 )
 
 //go:embed terms.txt
 var termsTxt string
 
+//go:embed schema.json
+var classifySchema string
+
 const (
-	defaultModel       = anthropic.ModelClaudeOpus4_8
-	defaultOutlineCap  = 50_000
-	defaultReadmeCap   = 30_000
-	defaultMaxTokens   = 8192
-	enrichmentTimeout  = 30 * time.Second
-	briefTimeout       = 5 * time.Minute
-	classifyToolName   = "emit_classification"
-	tmpDirPattern      = "distill-*"
-	readmeGlob         = "README*"
-	truncationMarker   = "\n\n[... truncated ...]\n"
+	defaultModel      = "claude-opus-4-8"
+	defaultOutlineCap = 50_000
+	defaultReadmeCap  = 30_000
+	claudeTimeout     = 10 * time.Minute
+	truncationMarker  = "\n\n[... truncated ...]\n"
+	systemPrompt      = "You are classifying open-source software into a fixed taxonomy. " +
+		"Only use terms from the provided list. Every tag must cite specific, " +
+		"mechanically-checkable evidence from the supplied data. Do not invent terms."
 )
 
 type Tag struct {
@@ -53,12 +52,14 @@ type Result struct {
 	Model        string   `json:"model"`
 	Tags         []Tag    `json:"tags"`
 	Unclassified []string `json:"unclassified"`
+	CostUSD      float64  `json:"cost_usd,omitempty"`
 	Error        string   `json:"error,omitempty"`
 }
 
 type classifyOpts struct {
 	model      string
 	briefBin   string
+	claudeBin  string
 	outlineCap int
 	readmeCap  int
 	keep       bool
@@ -66,8 +67,9 @@ type classifyOpts struct {
 
 func cmdClassify(args []string) {
 	fs := flag.NewFlagSet("distill classify", flag.ExitOnError)
-	model := fs.String("model", string(defaultModel), "Claude model ID")
+	model := fs.String("model", defaultModel, "Claude model ID")
 	briefBin := fs.String("brief", "brief", "Path to brief binary")
+	claudeBin := fs.String("claude", "claude", "Path to claude CLI")
 	outlineCap := fs.Int("outline-cap", defaultOutlineCap, "Max bytes of outline to include")
 	readmeCap := fs.Int("readme-cap", defaultReadmeCap, "Max bytes of README to include")
 	keep := fs.Bool("keep", false, "Keep cloned source directories")
@@ -81,12 +83,12 @@ func cmdClassify(args []string) {
 	opts := classifyOpts{
 		model:      *model,
 		briefBin:   *briefBin,
+		claudeBin:  *claudeBin,
 		outlineCap: *outlineCap,
 		readmeCap:  *readmeCap,
 		keep:       *keep,
 	}
 
-	client := anthropic.NewClient()
 	enrich, err := enrichment.NewClient(enrichment.WithUserAgent("git-pkgs/distill"))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: enrichment client: %v\n", err)
@@ -96,7 +98,7 @@ func cmdClassify(args []string) {
 	enc := json.NewEncoder(os.Stdout)
 	exit := 0
 	for _, target := range fs.Args() {
-		res := classifyOne(client, enrich, target, opts)
+		res := classifyOne(enrich, target, opts)
 		if res.Error != "" {
 			exit = 1
 		}
@@ -105,45 +107,22 @@ func cmdClassify(args []string) {
 	os.Exit(exit)
 }
 
-func classifyOne(client anthropic.Client, enrich enrichment.Client, target string, opts classifyOpts) Result {
+func classifyOne(enrich enrichment.Client, target string, opts classifyOpts) Result {
 	res := Result{Input: target, Model: opts.model}
 
-	source, purlStr, repo := resolveTarget(enrich, target)
-	res.Purl = purlStr
-	res.Repo = repo
-	if source == "" {
-		res.Error = "could not resolve target to a repository"
-		return res
-	}
-
-	dir, err := os.MkdirTemp("", tmpDirPattern)
+	g, err := gather(enrich, target, gatherOpts{briefBin: opts.briefBin, keep: opts.keep})
+	defer g.cleanup()
+	res.Purl = g.purl
+	res.Repo = g.repo
 	if err != nil {
-		res.Error = fmt.Sprintf("mkdtemp: %v", err)
-		return res
-	}
-	if !opts.keep {
-		defer func() { _ = os.RemoveAll(dir) }()
-	} else {
-		fmt.Fprintf(os.Stderr, "kept: %s -> %s\n", target, dir)
-	}
-
-	briefJSON, err := runBrief(opts.briefBin, []string{"-json", "-keep", "-dir", dir, source})
-	if err != nil {
-		res.Error = fmt.Sprintf("brief json: %v", err)
+		res.Error = err.Error()
 		return res
 	}
 
-	outline, err := runBrief(opts.briefBin, []string{"outline", dir})
-	if err != nil {
-		res.Error = fmt.Sprintf("brief outline: %v", err)
-		return res
-	}
+	prompt := buildPrompt(target, g.purl, g.briefJSON, capBytes(g.outline, opts.outlineCap), capBytes(g.readme, opts.readmeCap))
 
-	readme := readReadme(dir)
-
-	prompt := buildPrompt(target, purlStr, briefJSON, capBytes(outline, opts.outlineCap), capBytes(readme, opts.readmeCap))
-
-	cls, err := callModel(client, opts.model, prompt)
+	cls, cost, err := callModel(opts.claudeBin, opts.model, prompt)
+	res.CostUSD = cost
 	if err != nil {
 		res.Error = fmt.Sprintf("model: %v", err)
 		return res
@@ -151,53 +130,6 @@ func classifyOne(client anthropic.Client, enrich enrichment.Client, target strin
 	res.Tags = cls.Tags
 	res.Unclassified = cls.Unclassified
 	return res
-}
-
-// resolveTarget returns (sourceForBrief, purl, repoURL). sourceForBrief is what
-// to pass to `brief` (a repo URL or local path); it's empty if unresolvable.
-func resolveTarget(enrich enrichment.Client, target string) (source, purlStr, repo string) {
-	if strings.HasPrefix(target, "pkg:") {
-		purlStr = target
-		ctx, cancel := context.WithTimeout(context.Background(), enrichmentTimeout)
-		defer cancel()
-		info, err := enrich.BulkLookup(ctx, []string{target})
-		if err == nil {
-			if pi, ok := info[target]; ok && pi.Repository != "" {
-				return pi.Repository, purlStr, pi.Repository
-			}
-		}
-		// Fall back to registry URL if enrichment had nothing.
-		if p, perr := purl.Parse(target); perr == nil {
-			if u, uerr := p.RegistryURLWithVersion(); uerr == nil {
-				repo = u
-			}
-		}
-		return "", purlStr, repo
-	}
-	// Assume it's already a URL or local path brief can handle.
-	return target, "", target
-}
-
-func runBrief(bin string, args []string) (string, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), briefTimeout)
-	defer cancel()
-	cmd := exec.CommandContext(ctx, bin, args...)
-	cmd.Stderr = os.Stderr
-	out, err := cmd.Output()
-	if err != nil {
-		return "", fmt.Errorf("%s %s: %w", bin, strings.Join(args, " "), err)
-	}
-	return string(out), nil
-}
-
-func readReadme(dir string) string {
-	matches, _ := filepath.Glob(filepath.Join(dir, readmeGlob))
-	for _, m := range matches {
-		if b, err := os.ReadFile(m); err == nil { //nolint:gosec // dir is our own mkdtemp
-			return string(b)
-		}
-	}
-	return ""
 }
 
 func capBytes(s string, n int) string {
@@ -230,7 +162,7 @@ func buildPrompt(target, purlStr, briefJSON, outline, readme string) string {
 		b.WriteString(readme)
 	}
 	b.WriteString("\n\n# Task\n\n")
-	b.WriteString("Call emit_classification once. For each tag, the evidence field must cite a specific ")
+	b.WriteString("Emit the classification as JSON. For each tag, the evidence field must cite a specific ")
 	b.WriteString("dependency, import, exported symbol, file, or manifest entry visible in the data above. ")
 	b.WriteString("Prefer evidence_kind dependency/import/symbol/file/manifest over readme; use readme only ")
 	b.WriteString("when no structural evidence exists. List anything you wanted to tag but couldn't fit ")
@@ -238,85 +170,59 @@ func buildPrompt(target, purlStr, briefJSON, outline, readme string) string {
 	return b.String()
 }
 
-func callModel(client anthropic.Client, model, prompt string) (*Classification, error) {
-	tool := anthropic.ToolParam{
-		Name:        classifyToolName,
-		Description: anthropic.String("Emit the final classification for this package."),
-		InputSchema: classifySchema(),
-	}
-	adaptive := anthropic.ThinkingConfigAdaptiveParam{}
-	resp, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-		Model:     anthropic.Model(model),
-		MaxTokens: defaultMaxTokens,
-		Thinking:  anthropic.ThinkingConfigParamUnion{OfAdaptive: &adaptive},
-		System: []anthropic.TextBlockParam{{
-			Text: "You are classifying open-source software into a fixed taxonomy. " +
-				"Only use terms from the provided list. Every tag must cite specific, " +
-				"mechanically-checkable evidence from the supplied data. Do not invent terms.",
-		}},
-		Tools:      []anthropic.ToolUnionParam{{OfTool: &tool}},
-		ToolChoice: anthropic.ToolChoiceUnionParam{OfTool: &anthropic.ToolChoiceToolParam{Name: classifyToolName}},
-		Messages: []anthropic.MessageParam{
-			anthropic.NewUserMessage(anthropic.NewTextBlock(prompt)),
-		},
-	})
+// callModel shells out to `claude -p` so distill uses whatever auth Claude Code
+// already has, instead of managing API keys itself.
+func callModel(claudeBin, model, prompt string) (*Classification, float64, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), claudeTimeout)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, claudeBin,
+		"-p",
+		"--model", model,
+		"--system-prompt", systemPrompt,
+		"--json-schema", classifySchema,
+		"--output-format", "json",
+	)
+	cmd.Stdin = strings.NewReader(prompt)
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	out, err := cmd.Output()
 	if err != nil {
-		return nil, err
+		return nil, 0, fmt.Errorf("claude -p: %w: %s", err, strings.TrimSpace(stderr.String()))
 	}
-	for _, block := range resp.Content {
-		if tu, ok := block.AsAny().(anthropic.ToolUseBlock); ok && tu.Name == classifyToolName {
-			var cls Classification
-			if jerr := json.Unmarshal([]byte(tu.JSON.Input.Raw()), &cls); jerr != nil {
-				return nil, fmt.Errorf("parse tool input: %w", jerr)
-			}
-			validateTerms(&cls)
-			return &cls, nil
-		}
+	cls, cost, err := parseClaudeOutput(out)
+	if err != nil {
+		return nil, cost, err
 	}
-	return nil, fmt.Errorf("no %s tool call in response (stop_reason=%s)", classifyToolName, resp.StopReason)
+	validateTerms(cls)
+	return cls, cost, nil
 }
 
-//nolint:goconst // JSON Schema keywords ("type", "enum", etc.) read better inline than as named constants.
-func classifySchema() anthropic.ToolInputSchemaParam {
-	return anthropic.ToolInputSchemaParam{
-		Properties: map[string]any{
-			"tags": map[string]any{
-				"type": "array",
-				"items": map[string]any{
-					"type": "object",
-					"properties": map[string]any{
-						"facet": map[string]any{
-							"type": "string",
-							"enum": []string{"domain", "role", "function", "layer", "technology", "audience"},
-						},
-						"term": map[string]any{
-							"type":        "string",
-							"description": "Must be one of the allowed terms for the chosen facet.",
-						},
-						"evidence": map[string]any{
-							"type":        "string",
-							"description": "Specific dependency, import, symbol, file path or manifest entry that justifies this tag.",
-						},
-						"evidence_kind": map[string]any{
-							"type": "string",
-							"enum": []string{"dependency", "import", "symbol", "file", "manifest", "readme"},
-						},
-						"confidence": map[string]any{
-							"type": "string",
-							"enum": []string{"high", "medium", "low"},
-						},
-					},
-					"required": []string{"facet", "term", "evidence", "evidence_kind", "confidence"},
-				},
-			},
-			"unclassified": map[string]any{
-				"type":        "array",
-				"items":       map[string]any{"type": "string"},
-				"description": "Aspects of the package that should be tagged but no allowed term fits.",
-			},
-		},
-		Required: []string{"tags", "unclassified"},
+// parseClaudeOutput extracts the Classification from `claude -p --output-format json`.
+// With --json-schema set, the schema-conforming object lands in `structured_output`;
+// `result` carries any prose summary the harness produced and is ignored here.
+func parseClaudeOutput(out []byte) (*Classification, float64, error) {
+	var env struct {
+		Type             string          `json:"type"`
+		Subtype          string          `json:"subtype"`
+		IsError          bool            `json:"is_error"`
+		Result           string          `json:"result"`
+		StructuredOutput json.RawMessage `json:"structured_output"`
+		TotalCostUSD     float64         `json:"total_cost_usd"`
 	}
+	if err := json.Unmarshal(out, &env); err != nil {
+		return nil, 0, fmt.Errorf("parse claude envelope: %w (raw: %.200s)", err, out)
+	}
+	if env.IsError || env.Subtype != "success" {
+		return nil, env.TotalCostUSD, fmt.Errorf("claude returned %s/%s: %s", env.Type, env.Subtype, env.Result)
+	}
+	if len(env.StructuredOutput) == 0 || string(env.StructuredOutput) == "null" {
+		return nil, env.TotalCostUSD, fmt.Errorf("no structured_output in claude response (result: %.200s)", env.Result)
+	}
+	var cls Classification
+	if err := json.Unmarshal(env.StructuredOutput, &cls); err != nil {
+		return nil, env.TotalCostUSD, fmt.Errorf("parse structured_output: %w (raw: %.200s)", err, env.StructuredOutput)
+	}
+	return &cls, env.TotalCostUSD, nil
 }
 
 // validateTerms drops tags whose facet:term is not in terms.txt and records the

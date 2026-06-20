@@ -36,15 +36,39 @@ func TestValidateTermsDropsUnknown(t *testing.T) {
 }
 
 func TestClassifySchemaIsValidJSON(t *testing.T) {
-	s := classifySchema()
-	if _, err := json.Marshal(s); err != nil {
-		t.Fatalf("schema does not marshal: %v", err)
+	var v map[string]any
+	if err := json.Unmarshal([]byte(classifySchema), &v); err != nil {
+		t.Fatalf("schema.json is not valid JSON: %v", err)
+	}
+	if _, ok := v["properties"].(map[string]any)["tags"]; !ok {
+		t.Fatal("schema missing tags property")
+	}
+}
+
+func TestParseClaudeOutput(t *testing.T) {
+	inner := `{"tags":[{"facet":"role","term":"library","evidence":"x","evidence_kind":"file","confidence":"high"}],"unclassified":[]}`
+	raw := []byte(`{"type":"result","subtype":"success","is_error":false,"result":"prose ignored","structured_output":` + inner + `,"total_cost_usd":0.0123}`)
+	cls, cost, err := parseClaudeOutput(raw)
+	if err != nil {
+		t.Fatalf("parse: %v", err)
+	}
+	if len(cls.Tags) != 1 || cls.Tags[0].Term != "library" {
+		t.Fatalf("unexpected tags: %+v", cls.Tags)
+	}
+	if cost != 0.0123 {
+		t.Fatalf("cost not captured: %v", cost)
+	}
+	if _, _, err := parseClaudeOutput([]byte(`{"type":"result","subtype":"error","is_error":true,"result":"boom"}`)); err == nil {
+		t.Fatal("expected error on is_error envelope")
+	}
+	if _, _, err := parseClaudeOutput([]byte(`{"type":"result","subtype":"success","is_error":false,"result":"only prose"}`)); err == nil {
+		t.Fatal("expected error when structured_output missing")
 	}
 }
 
 func TestBuildPromptIncludesInputs(t *testing.T) {
 	p := buildPrompt("pkg:npm/x", "pkg:npm/x", `{"languages":[]}`, "## Structure", "# X readme")
-	for _, want := range []string{"pkg:npm/x", "languages", "## Structure", "X readme", "role:library", "emit_classification"} {
+	for _, want := range []string{"pkg:npm/x", "languages", "## Structure", "X readme", "role:library"} {
 		if !strings.Contains(p, want) {
 			t.Errorf("prompt missing %q", want)
 		}

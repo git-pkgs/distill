@@ -2,10 +2,20 @@
 
 Trains a small multi-label classifier that assigns [oss-taxonomy](https://github.com/ecosyste-ms/oss-taxonomy) terms to a repository from code-derived signals (brief detection output, outline identifiers, structural facts), with the README as an optional and explicitly-distrusted input. An LLM teacher labels a corpus at curation time; the trained student runs offline inside [brief](https://github.com/git-pkgs/brief) at scan time and generalises to repos the teacher never saw.
 
+Needs `brief` and `claude` on PATH.
+
 ## classify (teacher)
 
 ```
-ANTHROPIC_API_KEY=... distill classify pkg:pypi/torch pkg:gem/rails > labels.jsonl
+distill classify pkg:pypi/torch pkg:gem/rails > labels.jsonl
 ```
 
-Needs `brief` on PATH. Each line is `{input, purl, repo, model, tags: [{facet, term, evidence, evidence_kind, confidence}], unclassified}`. Flags: `-model`, `-brief`, `-outline-cap`, `-readme-cap`, `-keep`.
+Shells to `claude -p` so it uses your existing Claude Code login. Each line is `{input, purl, repo, model, tags: [{facet, term, evidence, evidence_kind, confidence}], unclassified, cost_usd}`. Flags: `-model`, `-brief`, `-claude`, `-outline-cap`, `-readme-cap`, `-keep`.
+
+## extract (student input)
+
+```
+distill extract pkg:pypi/torch pkg:gem/rails > features.jsonl
+```
+
+Deterministic feature record per repo: `{stack_tags, structure, identifiers, readme}`. No model call. Flags: `-brief`, `-max-files`, `-max-identifiers`, `-keep`.

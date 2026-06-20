@@ -15,6 +15,8 @@ func main() {
 	switch args[0] {
 	case "classify":
 		cmdClassify(args[1:])
+	case "extract":
+		cmdExtract(args[1:])
 	default:
 		usage()
 	}
@@ -23,6 +25,7 @@ func main() {
 func usage() {
 	fmt.Fprintln(os.Stderr, "usage: distill <command> [args]")
 	fmt.Fprintln(os.Stderr, "")
-	fmt.Fprintln(os.Stderr, "  classify <purl|url>...   classify packages into oss-taxonomy terms")
+	fmt.Fprintln(os.Stderr, "  classify <purl|url>...   LLM teacher labels packages with oss-taxonomy terms")
+	fmt.Fprintln(os.Stderr, "  extract  <purl|url>...   emit deterministic feature record (student input)")
 	os.Exit(exitUsage)
 }

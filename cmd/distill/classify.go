@@ -108,19 +108,18 @@ func cmdClassify(args []string) {
 }
 
 func classifyOne(enrich enrichment.Client, target string, opts classifyOpts) Result {
-	res := Result{Input: target, Model: opts.model}
-
 	g, err := gather(enrich, target, gatherOpts{briefBin: opts.briefBin, keep: opts.keep})
 	defer g.cleanup()
-	res.Purl = g.purl
-	res.Repo = g.repo
-	if err != nil {
-		res.Error = err.Error()
+	return classifyFrom(g, err, opts)
+}
+
+func classifyFrom(g *gathered, gatherErr error, opts classifyOpts) Result {
+	res := Result{Input: g.input, Purl: g.purl, Repo: g.repo, Model: opts.model}
+	if gatherErr != nil {
+		res.Error = gatherErr.Error()
 		return res
 	}
-
-	prompt := buildPrompt(target, g.purl, g.briefJSON, capBytes(g.outline, opts.outlineCap), capBytes(g.readme, opts.readmeCap))
-
+	prompt := buildPrompt(g.input, g.purl, g.briefJSON, capBytes(g.outline, opts.outlineCap), capBytes(g.readme, opts.readmeCap))
 	cls, cost, err := callModel(opts.claudeBin, opts.model, prompt)
 	res.CostUSD = cost
 	if err != nil {

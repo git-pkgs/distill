@@ -19,3 +19,11 @@ distill extract pkg:pypi/torch pkg:gem/rails > features.jsonl
 ```
 
 Deterministic feature record per repo: `{stack_tags, structure, identifiers, readme}`. No model call. Flags: `-brief`, `-max-files`, `-max-identifiers`, `-keep`.
+
+## corpus
+
+```
+distill corpus -from corpus/seed.txt -labels labels.jsonl -features features.jsonl
+```
+
+Clones each target once and writes both the label and feature records. Appends to the output files and skips inputs that already have a successful label, so an interrupted run restarts where it left off. Flags are the union of `classify` and `extract` flags plus `-from`.

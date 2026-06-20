@@ -80,22 +80,22 @@ func cmdExtract(args []string) {
 }
 
 func extractOne(enrich enrichment.Client, target string, gopts gatherOpts, maxIdents int) Features {
-	f := Features{Input: target}
 	g, err := gather(enrich, target, gopts)
 	defer g.cleanup()
-	f.Purl = g.purl
-	f.Repo = g.repo
-	if err != nil {
-		f.Error = err.Error()
+	return featuresFrom(g, err, maxIdents)
+}
+
+func featuresFrom(g *gathered, gatherErr error, maxIdents int) Features {
+	f := Features{Input: g.input, Purl: g.purl, Repo: g.repo}
+	if gatherErr != nil {
+		f.Error = gatherErr.Error()
 		return f
 	}
-
 	rep, perr := parseBriefReport(g.briefJSON)
 	if perr != nil {
 		f.Error = fmt.Sprintf("parse brief json: %v", perr)
 		return f
 	}
-
 	tree, body := splitOutline(g.outline)
 	f.StackTags = stackTags(rep)
 	f.Structure = structure(rep, tree)

@@ -17,6 +17,8 @@ func main() {
 		cmdClassify(args[1:])
 	case "extract":
 		cmdExtract(args[1:])
+	case "corpus":
+		cmdCorpus(args[1:])
 	default:
 		usage()
 	}
@@ -27,5 +29,6 @@ func usage() {
 	fmt.Fprintln(os.Stderr, "")
 	fmt.Fprintln(os.Stderr, "  classify <purl|url>...   LLM teacher labels packages with oss-taxonomy terms")
 	fmt.Fprintln(os.Stderr, "  extract  <purl|url>...   emit deterministic feature record (student input)")
+	fmt.Fprintln(os.Stderr, "  corpus   -from <file>    gather once per target, write both labels and features")
 	os.Exit(exitUsage)
 }

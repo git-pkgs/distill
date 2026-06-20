@@ -129,3 +129,31 @@ def test_load_pairs(tmp_path):
     pairs = load_pairs(labels, feats)
     assert [p.input for p in pairs] == ["a"]
     assert pairs[0].tags[0]["term"] == "library"
+
+
+def test_load_pairs_dedupes_retries(tmp_path):
+    # corpus appends, so an input can appear as error then success; last ok wins.
+    labels = tmp_path / "l.jsonl"
+    feats = tmp_path / "f.jsonl"
+    labels.write_text(
+        "\n".join(
+            json.dumps(r)
+            for r in [
+                {"input": "a", "error": "model: claude -p: exit status 1"},
+                {"input": "a", "tags": [{"facet": "role", "term": "cli-tool", "confidence": "high"}]},
+            ]
+        )
+    )
+    feats.write_text(
+        "\n".join(
+            json.dumps(r)
+            for r in [
+                {"input": "a", "error": "brief outline: ..."},
+                {"input": "a", "stack_tags": ["role:cli-tool"], "structure": {}, "identifiers": ["x"], "readme": ""},
+            ]
+        )
+    )
+    pairs = load_pairs(labels, feats)
+    assert len(pairs) == 1
+    assert pairs[0].tags[0]["term"] == "cli-tool"
+    assert pairs[0].features["identifiers"] == ["x"]

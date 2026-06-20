@@ -38,6 +38,9 @@ func cmdAnalyse(args []string) {
 	analyse(os.Stdout, path, recs, *topTerms, *topGaps)
 }
 
+// readLabels reads a labels.jsonl. Because `corpus` appends, a retried input
+// can appear more than once (an earlier error followed by a later result); the
+// last occurrence per input wins and order is preserved by first appearance.
 func readLabels(path string) ([]Result, error) {
 	f, err := os.Open(path) //nolint:gosec // user-supplied path is the point
 	if err != nil {
@@ -45,7 +48,8 @@ func readLabels(path string) ([]Result, error) {
 	}
 	defer func() { _ = f.Close() }()
 
-	var out []Result
+	order := []string{}
+	byInput := map[string]Result{}
 	sc := bufio.NewScanner(f)
 	const maxLine = 1 << 20
 	sc.Buffer(make([]byte, 0), maxLine)
@@ -58,9 +62,19 @@ func readLabels(path string) ([]Result, error) {
 		if jerr := json.Unmarshal([]byte(line), &r); jerr != nil {
 			return nil, fmt.Errorf("parse line: %w", jerr)
 		}
-		out = append(out, r)
+		if _, seen := byInput[r.Input]; !seen {
+			order = append(order, r.Input)
+		}
+		byInput[r.Input] = r
 	}
-	return out, sc.Err()
+	if err := sc.Err(); err != nil {
+		return nil, err
+	}
+	out := make([]Result, len(order))
+	for i, in := range order {
+		out[i] = byInput[in]
+	}
+	return out, nil
 }
 
 var facetOrder = []string{"role", "function", "technology", "layer", "domain", "audience"}

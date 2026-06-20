@@ -63,6 +63,28 @@ func TestReadLabelsAndAnalyse(t *testing.T) {
 	if len(recs) != 3 {
 		t.Fatalf("expected 3 records, got %d", len(recs))
 	}
+
+	// readLabels takes last-wins per input (corpus appends retries).
+	dpath := filepath.Join(dir, "dup.jsonl")
+	dup := []string{
+		`{"input":"a","error":"model: claude -p: exit status 1"}`,
+		`{"input":"b","tags":[{"facet":"role","term":"library","evidence_kind":"file","confidence":"high"}]}`,
+		`{"input":"a","tags":[{"facet":"role","term":"cli-tool","evidence_kind":"manifest","confidence":"high"}]}`,
+	}
+	if werr := os.WriteFile(dpath, []byte(strings.Join(dup, "\n")+"\n"), 0o600); werr != nil {
+		t.Fatal(werr)
+	}
+	drecs, derr := readLabels(dpath)
+	if derr != nil {
+		t.Fatal(derr)
+	}
+	if len(drecs) != 2 {
+		t.Fatalf("expected 2 deduped records, got %d", len(drecs))
+	}
+	// order preserved by first appearance: a then b; a now the success row.
+	if drecs[0].Input != "a" || drecs[0].Error != "" || len(drecs[0].Tags) != 1 {
+		t.Fatalf("expected a to resolve to its success row, got %+v", drecs[0])
+	}
 	// analyse should not panic on this mix; capture nothing, just exercise it.
 	w, _ := os.Open(os.DevNull)
 	defer func() { _ = w.Close() }()

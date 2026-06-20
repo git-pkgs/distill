@@ -112,18 +112,16 @@ def _bucket(n: int) -> str:
 
 
 def load_pairs(labels_path: str | Path, features_path: str | Path) -> list[Example]:
-    """Join labels.jsonl and features.jsonl on .input, dropping errored rows."""
-    feats: dict[str, dict] = {}
-    for rec in _read_jsonl(features_path):
-        if rec.get("error"):
-            continue
-        feats[rec["input"]] = rec
+    """Join labels.jsonl and features.jsonl on .input, dropping errored rows.
+
+    Both files are append-only and a retried input can appear more than once
+    (error then success); the last successful row per input wins.
+    """
+    feats = _last_ok_by_input(features_path)
+    labels = _last_ok_by_input(labels_path)
 
     out: list[Example] = []
-    for rec in _read_jsonl(labels_path):
-        if rec.get("error"):
-            continue
-        inp = rec["input"]
+    for inp, rec in labels.items():
         f = feats.get(inp)
         if f is None:
             continue
@@ -135,6 +133,16 @@ def load_pairs(labels_path: str | Path, features_path: str | Path) -> list[Examp
                 unclassified=rec.get("unclassified") or [],
             )
         )
+    return out
+
+
+def _last_ok_by_input(path: str | Path) -> dict[str, dict]:
+    """Map input -> last non-errored record, preserving first-seen order."""
+    out: dict[str, dict] = {}
+    for rec in _read_jsonl(path):
+        if rec.get("error"):
+            continue
+        out[rec["input"]] = rec
     return out
 
 

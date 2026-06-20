@@ -27,3 +27,21 @@ distill corpus -from corpus/seed.txt -labels labels.jsonl -features features.jso
 ```
 
 Clones each target once and writes both the label and feature records. Appends to the output files and skips inputs that already have a successful label, so an interrupted run restarts where it left off. Flags are the union of `classify` and `extract` flags plus `-from`.
+
+## analyse
+
+```
+distill analyse labels.jsonl
+```
+
+Summarises a labels file: success/error breakdown, evidence grounding, per-facet coverage, top terms, and clustered unclassified gap themes (the input to oss-taxonomy term proposals).
+
+## generators
+
+```
+go generate ./...                 # regenerate cmd/distill/{terms,vocab}.txt
+go run ./tools/gencorpus          # fetch top-deps + rebuild corpus/seed.txt
+go run ./tools/gencorpus -fetch=false   # rebuild seed from existing top-deps.txt
+```
+
+`tools/genvocab` reads a local oss-taxonomy `combined-taxonomy.json` (`-taxonomy` flag, defaults to `~/code/ecosystems/oss-taxonomy`) and writes the embedded vocabulary. `tools/gencorpus` builds the corpus seed from packages.ecosyste.ms plus `corpus/knowledge.txt`.

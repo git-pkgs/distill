@@ -46,6 +46,7 @@ function:cli-building (aka: cli-framework, argument-parsing, argparse, command-l
 function:code-generation (aka: codegen, source-generation) — Tools that generate source code from schemas, interface definitions, or annotations
 function:compression (aka: archiving, zip, decompression) — Data compression, archiving, and decompression utilities
 function:configuration (aka: config, config-management, dotenv, settings, env-vars) — Libraries for loading, parsing, validating, and merging application configuration from files, environment variables, and flags
+function:connection-pooling (aka: connection-pool, pooling) — Libraries that manage reusable pools of database or network connections to bound resource use and latency
 function:containerization (aka: containers, docker) — Container runtimes, image building, and container management tools
 function:coverage (aka: code-coverage, test-coverage) — Measuring which lines, branches, or paths of code are exercised by tests
 function:data-mapping (aka: orm, object-relational-mapping, query-builder) — Object-relational mappers and query builders that translate between application objects and database rows
@@ -57,6 +58,7 @@ function:documentation (aka: docs, doc-generation) — Documentation generators,
 function:email (aka: mail, smtp, mailer) — Libraries for composing, sending, receiving, and parsing email over SMTP, IMAP, and related protocols
 function:encryption (aka: cryptography, crypto, key-management) — Cryptographic libraries, key management, and data encryption tools
 function:feature-flags (aka: feature-toggles, feature-management, feature-switches) — Runtime feature toggling for gradual rollouts, experiments, and kill switches
+function:ffi (aka: foreign-function-interface, native-bindings, language-bindings) — Foreign function interfaces and native binding generators that let code in one language call into another or into C libraries
 function:file-management (aka: file-operations, file-sync, backup) — File operations, synchronization, backup, and filesystem utilities
 function:file-watching (aka: file-watcher, live-reload, hot-reload, fsevents) — Filesystem watchers that detect file changes and trigger reloads, rebuilds, or notifications
 function:graph-database (aka: graph-db, property-graph, gremlin, cypher) — Drivers, query builders, and modeling layers for graph databases and graph query languages
@@ -64,6 +66,7 @@ function:gui-toolkit (aka: widget-toolkit, windowing, desktop-ui) — Widget too
 function:http-client (aka: http-requests, rest-client, api-client) — Libraries for making outbound HTTP requests to APIs and remote services
 function:image-processing (aka: image-manipulation, graphics-processing) — Image manipulation, conversion, optimization, and computer vision libraries
 function:internationalization (aka: i18n, l10n, localization) — Translation, localization, and multi-language support tools
+function:language-server (aka: lsp, language-server-protocol) — Language Server Protocol implementations that provide editors with completion, diagnostics, and navigation for a language
 function:logging (aka: log-management, log-aggregation) — Log collection, aggregation, parsing, and management systems
 function:messaging (aka: message-queue, pub-sub) — Message queues, pub-sub systems, and asynchronous communication platforms
 function:mocking (aka: test-doubles, stubbing, faking) — Test doubles, stubs, and fake implementations for isolating code under test
@@ -78,6 +81,7 @@ function:release-management (aka: versioning, changelog, release-automation) —
 function:routing (aka: router, url-dispatch, request-routing) — HTTP request routers and URL dispatchers that map incoming requests to handlers
 function:rpc (aka: grpc, remote-procedure-call, protobuf-rpc) — Remote procedure call frameworks and clients for typed request/response communication between services
 function:runtime-management (aka: version-manager, toolchain-management) — Installing and switching between versions of language runtimes and toolchains
+function:sbom (aka: software-bill-of-materials, spdx, cyclonedx) — Tools that generate, parse, or convert software bills of materials in formats like SPDX and CycloneDX
 function:scheduling (aka: task-scheduling, cron-jobs, job-scheduler) — Task scheduling, cron jobs, and time-based automation for running tasks at specified intervals
 function:scraping (aka: web-scraping) — Software for extracting data from websites or online sources
 function:search (aka: search-engine, full-text-search) — Search engines, full-text search, and indexing solutions
@@ -86,7 +90,9 @@ function:security-scanning (aka: vulnerability-scanning, sast, sca, security-ana
 function:serialization (aka: encoding, decoding, marshalling) — Data encoding, decoding, and format conversion libraries
 function:simulation (aka: modeling, simulation-engine) — Software for modeling systems, processes, and phenomena over time for analysis and prediction
 function:site-generation (aka: static-site-generator, ssg, site-builder) — Building static websites from content files, templates, and data sources
+function:static-analysis (aka: sast, code-analysis, dataflow-analysis, taint-analysis) — Tools that analyse source code without executing it to find bugs, security issues, or data-flow problems, including SAST and taint analysis
 function:styling (aka: css-processing, stylesheet, css-preprocessing) — Processing, generating, or extending stylesheets and visual presentation rules
+function:syntax-highlighting (aka: highlighter, code-highlighting) — Libraries that tokenise and colourise source code for display in editors, terminals, and documentation
 function:templating (aka: template-engine, template-rendering) — Template engines for generating dynamic content by combining templates with data
 function:testing (aka: test-automation, qa) — Software for writing, running, and managing automated tests and quality assurance
 function:text-processing (aka: string-processing, text-manipulation) — Text manipulation, pattern matching, diff, and string processing utilities

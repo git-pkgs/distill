@@ -18,6 +18,9 @@ import (
 //go:embed terms.txt
 var termsTxt string
 
+//go:embed vocab.txt
+var vocabTxt string
+
 //go:embed schema.json
 var classifySchema string
 
@@ -141,8 +144,11 @@ func capBytes(s string, n int) string {
 func buildPrompt(target, purlStr, briefJSON, outline, readme string) string {
 	var b strings.Builder
 	b.WriteString("Classify the following open-source package into the oss-taxonomy vocabulary.\n\n")
-	b.WriteString("# Allowed terms (facet:term)\n\nOnly emit terms that appear exactly in this list:\n\n")
-	b.WriteString(termsTxt)
+	b.WriteString("# Allowed terms\n\n")
+	b.WriteString("Only emit facet:term pairs from this list. Each line is `facet:term (aka: aliases) — description`; ")
+	b.WriteString("the aliases are not valid terms themselves but tell you which term to use for that concept ")
+	b.WriteString("(e.g. ORM → function:data-mapping).\n\n")
+	b.WriteString(vocabTxt)
 	b.WriteString("\n\n# Package\n\n")
 	b.WriteString("target: ")
 	b.WriteString(target)

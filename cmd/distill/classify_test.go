@@ -68,10 +68,28 @@ func TestParseClaudeOutput(t *testing.T) {
 
 func TestBuildPromptIncludesInputs(t *testing.T) {
 	p := buildPrompt("pkg:npm/x", "pkg:npm/x", `{"languages":[]}`, "## Structure", "# X readme")
-	for _, want := range []string{"pkg:npm/x", "languages", "## Structure", "X readme", "role:library"} {
+	for _, want := range []string{"pkg:npm/x", "languages", "## Structure", "X readme", "role:library", "aka: orm"} {
 		if !strings.Contains(p, want) {
 			t.Errorf("prompt missing %q", want)
 		}
+	}
+}
+
+func TestVocabAndTermsAligned(t *testing.T) {
+	// Every line in vocab.txt must start with a term that appears in terms.txt,
+	// otherwise validateTerms would reject things the prompt offered.
+	allowed := allowedTerms()
+	for _, line := range strings.Split(strings.TrimSpace(vocabTxt), "\n") {
+		key := line
+		if i := strings.IndexAny(line, " ("); i > 0 {
+			key = line[:i]
+		}
+		if !allowed[key] {
+			t.Errorf("vocab.txt line %q has no matching terms.txt entry", key)
+		}
+	}
+	if len(allowed) != strings.Count(strings.TrimSpace(vocabTxt), "\n")+1 {
+		t.Errorf("terms.txt (%d) and vocab.txt line counts differ", len(allowed))
 	}
 }
 

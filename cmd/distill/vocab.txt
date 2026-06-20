@@ -1,0 +1,191 @@
+audience:content-creator (aka: creator, streamer, blogger) — Tools for bloggers, streamers, video creators, and digital content producers
+audience:data-scientist (aka: data-analyst, ml-engineer) — Tools and libraries for data analysis, statistical computing, and machine learning practitioners
+audience:designer (aka: ui-designer, ux-designer, graphic-designer) — Tools for UI/UX designers, graphic designers, and creative professionals
+audience:developer (aka: dev, programmer) — Software intended for developers and programmers
+audience:devops-engineer (aka: platform-engineer, sre, site-reliability-engineer) — Software for engineers focused on CI/CD pipelines, cloud infrastructure, and deployment automation
+audience:educator (aka: teacher, instructor, trainer) — Teachers, trainers, and instructors using software for educational purposes and teaching
+audience:end-user (aka: consumer, general-user) — Software designed for non-technical users and general consumers
+audience:enterprise (aka: business, corporate, organization) — Software for business organizations, corporate environments, and large-scale deployments
+audience:hobbyist (aka: maker, tinkerer, diy) — Software for makers, tinkerers, DIY enthusiasts, and personal projects
+audience:researcher (aka: scientist) — Software used by researchers for data analysis, simulations, and experiments
+audience:security-professional (aka: pentester, security-analyst, infosec-professional) — Software for penetration testers, security analysts, SOC teams, and cybersecurity practitioners
+audience:student (aka: learner, education) — Educational software and learning tools for students and educational contexts
+audience:sysadmin (aka: system-administrator) — Software for system administrators managing servers, networks, and infrastructure
+audience:writer (aka: technical-writer, documentation-author) — Software for technical writers, documentation authors, and content professionals
+domain:blockchain (aka: crypto, web3, distributed-ledger) — Software for blockchain development, cryptocurrency, smart contracts, and web3 applications
+domain:cloud-computing (aka: cloud-native, serverless) — Cloud-native applications, serverless frameworks, and cloud infrastructure tools
+domain:content-management (aka: cms, content-publishing, blogging) — Content management systems, wikis, blogs, and platforms for creating and managing digital content
+domain:data-science (aka: ds, data-analysis) — Software for analyzing, processing, and visualizing data
+domain:database (aka: data-storage, dbms) — Database management systems, ORMs, query builders, and data storage solutions
+domain:desktop-development (aka: desktop-apps, gui) — Frameworks and tools for building native and cross-platform desktop applications
+domain:devops (aka: dev-ops, site-reliability) — Tools for automation, continuous integration, deployment, and operations management
+domain:education (aka: edtech, e-learning, lms) — Software for educational technology, learning management, online courses, and academic tools
+domain:embedded-systems (aka: iot, firmware, microcontrollers) — Software for IoT devices, microcontrollers, firmware, and hardware interfaces
+domain:finance (aka: fintech, financial-services, banking) — Software for financial services, trading, banking, payments, and fintech applications
+domain:game-development (aka: gamedev, game-engine) — Game engines, libraries, and tools for creating video games and interactive experiences
+domain:geospatial (aka: gis, mapping, location-services) — Software for geographic information systems, mapping, location services, and spatial data analysis
+domain:healthcare (aka: health-tech, medical, health-informatics) — Software for medical applications, health records, clinical systems, and health technology
+domain:machine-learning (aka: ml, deep-learning, ai) — Frameworks and tools for machine learning, deep learning, and artificial intelligence
+domain:mobile-development (aka: mobile, mobile-apps) — Software for building mobile applications for iOS, Android, and cross-platform systems
+domain:multimedia (aka: media, audio-video, media-processing) — Software for audio, video, image processing, editing, streaming, and media manipulation
+domain:natural-language-processing (aka: nlp, text-analysis, computational-linguistics) — Software for text analysis, language understanding, speech recognition, and computational linguistics
+domain:networking (aka: network-infrastructure, network-protocols) — Software for network infrastructure, protocols, routing, DNS, VPNs, and network management
+domain:robotics (aka: robot-operating-system, autonomous-systems) — Software for robot control, autonomous systems, ROS, and mechatronics applications
+domain:scientific-computing (aka: computational-science, scientific-software) — Software used in computational research and scientific modeling
+domain:security (aka: cybersecurity, infosec, appsec) — Software for cybersecurity, penetration testing, encryption, and security analysis
+domain:web-development (aka: webdev) — Software for building websites, web apps, and APIs
+function:api-development (aka: api, rest, graphql) — Frameworks and tools for building, documenting, and serving APIs
+function:async-runtime (aka: async, concurrency, event-loop, reactor) — Asynchronous runtimes, event loops, and concurrency primitives for non-blocking I/O and cooperative multitasking
+function:authentication (aka: auth, identity, access-control) — Identity management, access control, and authentication services
+function:automation (aka: task-automation, workflow-automation) — Tools for automating repetitive tasks, workflows, and processes across systems
+function:benchmarking (aka: performance-testing, load-testing, micro-benchmarking) — Measuring execution time, throughput, or resource usage of code under controlled conditions
+function:bundling (aka: module-bundling, asset-pipeline, asset-bundling) — Combining and transforming source files into optimised deployable artifacts
+function:caching (aka: cache, in-memory) — Cache systems, in-memory data stores, and performance optimization tools
+function:ci-cd (aka: continuous-integration, continuous-deployment) — Software for automating continuous integration and continuous deployment workflows
+function:cli-building (aka: cli-framework, argument-parsing, argparse, command-line-parser) — Libraries for building command-line interfaces, including argument parsing, subcommands, help text, and shell completion
+function:code-generation (aka: codegen, source-generation) — Tools that generate source code from schemas, interface definitions, or annotations
+function:compression (aka: archiving, zip, decompression) — Data compression, archiving, and decompression utilities
+function:containerization (aka: containers, docker) — Container runtimes, image building, and container management tools
+function:coverage (aka: code-coverage, test-coverage) — Measuring which lines, branches, or paths of code are exercised by tests
+function:data-mapping (aka: orm, object-relational-mapping, query-builder) — Object-relational mappers and query builders that translate between application objects and database rows
+function:database-management (aka: db-admin, database-tools) — Database administration tools, GUI clients, and database operation utilities
+function:dependency-injection (aka: ioc, inversion-of-control, di-container) — Inversion of control containers that wire object graphs and manage component lifecycles
+function:deployment (aka: release, shipping) — Tools for deploying, shipping, and releasing software to production environments
+function:documentation (aka: docs, doc-generation) — Documentation generators, static site generators for docs, and API documentation tools
+function:email (aka: mail, smtp, mailer) — Libraries for composing, sending, receiving, and parsing email over SMTP, IMAP, and related protocols
+function:encryption (aka: cryptography, crypto, key-management) — Cryptographic libraries, key management, and data encryption tools
+function:feature-flags (aka: feature-toggles, feature-management, feature-switches) — Runtime feature toggling for gradual rollouts, experiments, and kill switches
+function:file-management (aka: file-operations, file-sync, backup) — File operations, synchronization, backup, and filesystem utilities
+function:file-watching (aka: file-watcher, live-reload, hot-reload, fsevents) — Filesystem watchers that detect file changes and trigger reloads, rebuilds, or notifications
+function:graph-database (aka: graph-db, property-graph, gremlin, cypher) — Drivers, query builders, and modeling layers for graph databases and graph query languages
+function:gui-toolkit (aka: widget-toolkit, windowing, desktop-ui) — Widget toolkits and windowing libraries for building native desktop graphical interfaces
+function:http-client (aka: http-requests, rest-client, api-client) — Libraries for making outbound HTTP requests to APIs and remote services
+function:image-processing (aka: image-manipulation, graphics-processing) — Image manipulation, conversion, optimization, and computer vision libraries
+function:internationalization (aka: i18n, l10n, localization) — Translation, localization, and multi-language support tools
+function:logging (aka: log-management, log-aggregation) — Log collection, aggregation, parsing, and management systems
+function:messaging (aka: message-queue, pub-sub) — Message queues, pub-sub systems, and asynchronous communication platforms
+function:mocking (aka: test-doubles, stubbing, faking) — Test doubles, stubs, and fake implementations for isolating code under test
+function:monitoring (aka: observability, metrics) — Observability platforms, metrics collection, and system monitoring tools
+function:monorepo-management (aka: monorepo, workspace-tooling) — Tools for managing, versioning, and building many packages from a single repository
+function:networking (aka: network-management, network-tools) — Software for network protocols, routing, DNS, firewalls, and network management
+function:object-storage (aka: blob-storage, cloud-storage, s3) — Clients and abstractions for blob and object storage services such as S3, GCS, and Azure Blob
+function:parsing (aka: data-parsing, parser) — Libraries and tools for parsing and processing structured data formats like JSON, XML, CSV, and YAML
+function:payments (aka: payment-processing, billing, checkout) — SDKs and libraries for processing payments, subscriptions, and billing through payment providers
+function:process-execution (aka: subprocess, shell-execution, command-execution) — Libraries for spawning and managing operating system processes from application code
+function:release-management (aka: versioning, changelog, release-automation) — Versioning, changelog generation, and publishing automation for software releases
+function:routing (aka: router, url-dispatch, request-routing) — HTTP request routers and URL dispatchers that map incoming requests to handlers
+function:rpc (aka: grpc, remote-procedure-call, protobuf-rpc) — Remote procedure call frameworks and clients for typed request/response communication between services
+function:runtime-management (aka: version-manager, toolchain-management) — Installing and switching between versions of language runtimes and toolchains
+function:scheduling (aka: task-scheduling, cron-jobs, job-scheduler) — Task scheduling, cron jobs, and time-based automation for running tasks at specified intervals
+function:scraping (aka: web-scraping) — Software for extracting data from websites or online sources
+function:search (aka: search-engine, full-text-search) — Search engines, full-text search, and indexing solutions
+function:secrets-management (aka: credential-management, secrets, secret-storage) — Loading, storing, and rotating credentials and sensitive configuration at runtime
+function:security-scanning (aka: vulnerability-scanning, sast, sca, security-analysis) — Static and dynamic analysis tools that find vulnerabilities, secrets, and known-bad dependencies
+function:serialization (aka: encoding, decoding, marshalling) — Data encoding, decoding, and format conversion libraries
+function:simulation (aka: modeling, simulation-engine) — Software for modeling systems, processes, and phenomena over time for analysis and prediction
+function:site-generation (aka: static-site-generator, ssg, site-builder) — Building static websites from content files, templates, and data sources
+function:styling (aka: css-processing, stylesheet, css-preprocessing) — Processing, generating, or extending stylesheets and visual presentation rules
+function:templating (aka: template-engine, template-rendering) — Template engines for generating dynamic content by combining templates with data
+function:testing (aka: test-automation, qa) — Software for writing, running, and managing automated tests and quality assurance
+function:text-processing (aka: string-processing, text-manipulation) — Text manipulation, pattern matching, diff, and string processing utilities
+function:tui (aka: terminal-ui, text-ui, curses) — Terminal user interface toolkits for building interactive text-mode applications
+function:type-checking (aka: static-typing, type-inference, typecheck) — Static type analysis that verifies type correctness without running the code
+function:validation (aka: input-validation, schema-validation, data-validation) — Input validation, schema validation, and data verification libraries
+function:visualization (aka: data-visualization) — Software for creating charts, graphs, and visual representations of data
+function:webhooks (aka: webhook, http-callbacks) — Libraries for sending, receiving, verifying, and routing webhook payloads between services
+function:websocket (aka: websockets, real-time, ws) — WebSocket servers, clients, and protocol implementations for bidirectional real-time communication
+layer:application-layer (aka: business-logic, service-layer) — Business logic and application code that sits between the frontend and data layer
+layer:backend (aka: server-side) — Server-side software that handles business logic and database interactions
+layer:data-layer (aka: persistence-layer, storage-layer) — Database systems, caching, storage engines, and data persistence solutions
+layer:edge (aka: edge-computing, cdn, edge-functions) — Software that runs at the network edge, including CDNs, edge functions, and distributed compute
+layer:frontend (aka: client-side) — Software that runs in the browser or handles the user interface layer
+layer:full-stack (aka: fullstack, monolithic) — Frameworks and applications that span multiple layers from frontend to backend
+layer:hardware (aka: device-layer, firmware) — Software that interfaces directly with hardware devices and peripherals
+layer:infrastructure (aka: ops) — Software for provisioning and managing infrastructure, including networking and systems
+layer:middleware (aka: message-broker, integration-layer) — Message brokers, service buses, and integration layers between systems
+layer:network-layer (aka: networking, proxy-layer) — Load balancers, reverse proxies, API gateways, and networking infrastructure
+layer:operating-system (aka: os, system-level) — OS-level software, system utilities, and kernel-space applications
+layer:platform (aka: runtime-platform, platform-as-a-service) — Foundational services, runtime environments, and platforms that other software runs on
+role:application (aka: app, standalone-application) — Standalone end-user applications for desktop, mobile, or web that serve a complete user-facing purpose
+role:build-tool (aka: build-system, bundler, task-runner) — Build systems, task runners, and tools for compiling and bundling applications
+role:cli-tool (aka: command-line-tool) — Software that provides a command-line interface for interaction
+role:compiler (aka: transpiler, code-transformer) — Language compilers, transpilers, and code transformation tools
+role:database-system (aka: dbms, data-store) — Complete database management systems for storing, querying, and managing data
+role:debugger (aka: debugging-tool, profiler) — Tools for inspecting, stepping through, and diagnosing issues in running code
+role:editor (aka: text-editor, code-editor, ide) — Text editors and integrated development environments for writing and editing code
+role:emulator (aka: simulator, virtual-machine) — Software that mimics hardware or other software environments for testing or compatibility
+role:formatter (aka: code-formatter, beautifier) — Tools that automatically format source code to follow consistent style conventions
+role:framework (aka: web-framework) — Software that provides a structured foundation to build applications
+role:language (aka: programming-language, language-implementation) — Programming languages and their core implementations, compilers, or interpreters
+role:library (aka: package, module) — Reusable code modules, packages, and utilities that provide specific functionality
+role:linter (aka: static-analyzer, code-checker) — Static analysis tools that check code for errors, bugs, and style violations
+role:orchestrator (aka: container-orchestration, cluster-management) — Container orchestration and service management platforms for distributed systems
+role:package-manager (aka: dependency-manager, package-installer) — Tools for managing software dependencies, packages, and library installations
+role:plugin (aka: extension, addon, module) — Extensions and add-ons that enhance or modify existing software functionality
+role:runtime (aka: interpreter, execution-environment) — Execution environments and interpreters that run programs written in a specific language
+role:sdk (aka: software-development-kit) — A software development kit that includes tools and libraries to build applications for a platform
+role:server (aka: web-server, http-server) — HTTP servers, web servers, and service daemons that handle network requests
+role:service (aka: daemon, background-service) — Self-contained running applications, daemons, and API services that operate independently
+role:testing-framework (aka: test-framework, test-runner) — Frameworks and tools for writing, running, and managing automated tests
+technology:angular (aka: angularjs) — A TypeScript-based web application framework developed by Google for building dynamic single-page applications
+technology:ansible (aka: ansible-automation) — An open-source automation tool for configuration management, application deployment, and task automation
+technology:aws (aka: amazon-web-services) — Amazon Web Services, a comprehensive cloud computing platform offering compute, storage, and services
+technology:azure (aka: microsoft-azure, azure-cloud) — Microsoft's cloud computing platform providing services for building, deploying, and managing applications
+technology:bootstrap (aka: bootstrap-css) — A popular CSS framework for building responsive and mobile-first websites with pre-designed components
+technology:c (aka: c-lang) — A foundational systems programming language known for efficiency and close-to-hardware control
+technology:chromium (aka: chrome, blink, cef) — The open-source browser engine that underpins Chrome, Electron, and many embedded webviews
+technology:cmake (aka: cmakelists) — A cross-platform build system generator widely used for C and C++ projects
+technology:cpp (aka: c++, cplusplus) — A general-purpose programming language extending C with object-oriented features, used for high-performance applications
+technology:csharp (aka: c#, c-sharp) — A modern, object-oriented programming language developed by Microsoft for the
+technology:css (aka: css3, cascading-style-sheets) — A stylesheet language used for describing the presentation and styling of web pages
+technology:dart (aka: dart-lang) — A client-optimized programming language for building multi-platform applications, primarily used with Flutter
+technology:django (aka: django-framework) — A high-level Python web framework that encourages rapid development and clean, pragmatic design
+technology:docker (aka: container-platform) — A platform for automating the deployment, scaling, and management of applications using containers
+technology:elasticsearch (aka: elastic, es) — A distributed search and analytics engine built on Apache Lucene for full-text search and logging
+technology:elixir (aka: elixir-lang) — A functional, concurrent programming language built on the Erlang VM, designed for building scalable and maintainable applications
+technology:express (aka: expressjs, express-js) — A minimal and flexible Node
+technology:fastapi (aka: fast-api) — A modern, fast Python web framework for building APIs with automatic documentation and type hints
+technology:flask (aka: flask-framework) — A lightweight Python web framework that provides tools and libraries for building web applications
+technology:flutter (aka: flutter-sdk) — Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase
+technology:git (aka: git-scm) — A distributed version control system for tracking changes in source code during software development
+technology:github-actions (aka: gha, actions) — A CI/CD platform integrated with GitHub for automating workflows, builds, tests, and deployments
+technology:go (aka: golang) — A statically typed, compiled programming language designed for simplicity and efficient concurrent programming
+technology:graphql (aka: graph-ql) — A query language for APIs and runtime for executing queries with existing data
+technology:groovy (aka: apache-groovy) — A dynamic JVM language used for scripting, build configuration, and application development
+technology:html (aka: html5, hypertext-markup-language) — The standard markup language for creating web pages and web applications
+technology:java (aka: jvm) — An object-oriented programming language designed for portability and used in enterprise applications
+technology:javascript (aka: js, ecmascript) — A versatile programming language for web development, used for both frontend and backend applications
+technology:jenkins (aka: jenkins-ci) — An open-source automation server for building, testing, and deploying software with continuous integration
+technology:jquery (aka: jq) — A fast, small JavaScript library that simplifies HTML document traversal and manipulation
+technology:kotlin (aka: kotlin-lang) — A modern, statically typed programming language that runs on the JVM, officially supported for Android development
+technology:kubernetes (aka: k8s) — An open-source container orchestration platform for automating deployment, scaling, and management of applications
+technology:laravel (aka: laravel-framework) — A PHP web framework with elegant syntax for building modern web applications with MVC architecture
+technology:linux (aka: linux-os, gnu-linux) — An open-source Unix-like operating system kernel and family of operating systems
+technology:mongodb (aka: mongo) — A document-oriented NoSQL database designed for scalability and flexibility with JSON-like documents
+technology:mysql (aka: mysql-server) — An open-source relational database management system known for reliability and ease of use
+technology:nextjs (aka: next, next-js) — A React framework for building full-stack web applications with server-side rendering and static generation
+technology:nginx (aka: nginx-server) — A high-performance web server, reverse proxy, and load balancer for handling HTTP and HTTPS traffic
+technology:nix (aka: nixos, nixpkgs, flakes) — A purely functional package manager and expression language for reproducible builds and system configuration
+technology:nodejs (aka: node, node-js) — A JavaScript runtime built on Chrome's V8 engine for building scalable server-side applications
+technology:objective-c (aka: objc, objectivec) — An object-oriented C superset historically used for macOS and iOS development
+technology:php (aka: php-lang) — A server-side scripting language designed for web development and general-purpose programming
+technology:postgresql (aka: postgres, psql) — An advanced, open-source relational database with strong standards compliance and extensibility
+technology:python (aka: py) — A high-level, interpreted programming language known for readability and versatility across domains
+technology:r (aka: r-lang, r-project) — A programming language and environment for statistical computing, data analysis, and visualization
+technology:rails (aka: ruby-on-rails, ror) — A Ruby web framework following convention over configuration, designed for building database-backed web applications
+technology:react (aka: reactjs) — A JavaScript library for building user interfaces, primarily for single-page applications
+technology:redis (aka: redis-server) — An in-memory data structure store used as a database, cache, message broker, and streaming engine
+technology:ruby (aka: ruby-lang) — A dynamic, interpreted programming language focused on simplicity and productivity with elegant syntax
+technology:rust (aka: systems-language) — A systems programming language focused on safety, speed, and concurrency
+technology:sass (aka: scss) — A CSS preprocessor that extends CSS with variables, nesting, mixins, and other powerful features
+technology:scala (aka: scala-lang) — A functional and object-oriented programming language running on the JVM, popular in data engineering and distributed systems
+technology:spring-boot (aka: springboot, spring) — A Java-based framework for building production-ready Spring applications with minimal configuration
+technology:sqlite (aka: sqlite3) — A lightweight, embedded SQL database engine that requires no separate server process or configuration
+technology:svelte (aka: sveltejs) — A modern JavaScript framework that compiles components into efficient vanilla JavaScript at build time
+technology:swift (aka: swift-lang) — A powerful, modern programming language developed by Apple for iOS, macOS, and other Apple platforms
+technology:tailwindcss (aka: tailwind) — A utility-first CSS framework for rapidly building custom user interfaces with composable classes
+technology:terraform (aka: tf) — An infrastructure as code tool for building, changing, and versioning infrastructure safely and efficiently
+technology:typescript (aka: ts) — A typed superset of JavaScript that compiles to plain JavaScript, adding static type checking
+technology:vite (aka: vitejs) — A fast build tool and development server for modern web projects with native ES modules support
+technology:vue (aka: vuejs, vue-js) — A progressive JavaScript framework for building user interfaces with a gentle learning curve
+technology:webpack (aka: webpack-bundler) — A module bundler for JavaScript applications that packages code and assets for deployment

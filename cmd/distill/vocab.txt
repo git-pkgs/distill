@@ -45,10 +45,12 @@ function:ci-cd (aka: continuous-integration, continuous-deployment) — Software
 function:cli-building (aka: cli-framework, argument-parsing, argparse, command-line-parser) — Libraries for building command-line interfaces, including argument parsing, subcommands, help text, and shell completion
 function:code-generation (aka: codegen, source-generation) — Tools that generate source code from schemas, interface definitions, or annotations
 function:compression (aka: archiving, zip, decompression) — Data compression, archiving, and decompression utilities
+function:configuration (aka: config, config-management, dotenv, settings, env-vars) — Libraries for loading, parsing, validating, and merging application configuration from files, environment variables, and flags
 function:containerization (aka: containers, docker) — Container runtimes, image building, and container management tools
 function:coverage (aka: code-coverage, test-coverage) — Measuring which lines, branches, or paths of code are exercised by tests
 function:data-mapping (aka: orm, object-relational-mapping, query-builder) — Object-relational mappers and query builders that translate between application objects and database rows
 function:database-management (aka: db-admin, database-tools) — Database administration tools, GUI clients, and database operation utilities
+function:database-migrations (aka: migrations, schema-migration, schema-versioning, seeding) — Tools that version, apply, and roll back database schema changes and seed data
 function:dependency-injection (aka: ioc, inversion-of-control, di-container) — Inversion of control containers that wire object graphs and manage component lifecycles
 function:deployment (aka: release, shipping) — Tools for deploying, shipping, and releasing software to production environments
 function:documentation (aka: docs, doc-generation) — Documentation generators, static site generators for docs, and API documentation tools
@@ -65,7 +67,7 @@ function:internationalization (aka: i18n, l10n, localization) — Translation, l
 function:logging (aka: log-management, log-aggregation) — Log collection, aggregation, parsing, and management systems
 function:messaging (aka: message-queue, pub-sub) — Message queues, pub-sub systems, and asynchronous communication platforms
 function:mocking (aka: test-doubles, stubbing, faking) — Test doubles, stubs, and fake implementations for isolating code under test
-function:monitoring (aka: observability, metrics) — Observability platforms, metrics collection, and system monitoring tools
+function:monitoring (aka: observability, metrics, tracing, opentelemetry, telemetry) — Observability platforms, metrics collection, and system monitoring tools
 function:monorepo-management (aka: monorepo, workspace-tooling) — Tools for managing, versioning, and building many packages from a single repository
 function:networking (aka: network-management, network-tools) — Software for network protocols, routing, DNS, firewalls, and network management
 function:object-storage (aka: blob-storage, cloud-storage, s3) — Clients and abstractions for blob and object storage services such as S3, GCS, and Azure Blob
@@ -188,4 +190,5 @@ technology:terraform (aka: tf) — An infrastructure as code tool for building, 
 technology:typescript (aka: ts) — A typed superset of JavaScript that compiles to plain JavaScript, adding static type checking
 technology:vite (aka: vitejs) — A fast build tool and development server for modern web projects with native ES modules support
 technology:vue (aka: vuejs, vue-js) — A progressive JavaScript framework for building user interfaces with a gentle learning curve
+technology:wasm (aka: webassembly, wasi) — WebAssembly runtimes, compilers, and toolchains for running portable bytecode in and outside the browser
 technology:webpack (aka: webpack-bundler) — A module bundler for JavaScript applications that packages code and assets for deployment

@@ -145,9 +145,12 @@ func buildPrompt(target, purlStr, briefJSON, outline, readme string) string {
 	var b strings.Builder
 	b.WriteString("Classify the following open-source package into the oss-taxonomy vocabulary.\n\n")
 	b.WriteString("# Allowed terms\n\n")
-	b.WriteString("Only emit facet:term pairs from this list. Each line is `facet:term (aka: aliases) — description`; ")
-	b.WriteString("the aliases are not valid terms themselves but tell you which term to use for that concept ")
-	b.WriteString("(e.g. ORM → function:data-mapping).\n\n")
+	b.WriteString("Only emit facet:term pairs from this list. Each line is `facet:term (aka: aliases) — description`. ")
+	b.WriteString("The aliases are alternative names for that term: if a concept matches an alias, emit the term it ")
+	b.WriteString("belongs to and treat the concept as fully covered. For example an ORM or query builder is ")
+	b.WriteString("function:data-mapping (its aliases include orm and query-builder) — emit function:data-mapping and ")
+	b.WriteString("do NOT also report ORM under unclassified. Only use unclassified for concepts that match no term ")
+	b.WriteString("AND no alias.\n\n")
 	b.WriteString(vocabTxt)
 	b.WriteString("\n\n# Package\n\n")
 	b.WriteString("target: ")
@@ -170,8 +173,8 @@ func buildPrompt(target, purlStr, briefJSON, outline, readme string) string {
 	b.WriteString("Emit the classification as JSON. For each tag, the evidence field must cite a specific ")
 	b.WriteString("dependency, import, exported symbol, file, or manifest entry visible in the data above. ")
 	b.WriteString("Prefer evidence_kind dependency/import/symbol/file/manifest over readme; use readme only ")
-	b.WriteString("when no structural evidence exists. List anything you wanted to tag but couldn't fit ")
-	b.WriteString("into the allowed terms under unclassified.\n")
+	b.WriteString("when no structural evidence exists. Before adding to unclassified, check the alias lists above; ")
+	b.WriteString("only list a concept as unclassified if neither a term nor any alias covers it.\n")
 	return b.String()
 }
 

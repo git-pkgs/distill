@@ -2,3 +2,6 @@
 *.jsonl
 .env
 *.log
+
+# bandwidth analysis API response cache
+/cache/

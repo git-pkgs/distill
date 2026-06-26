@@ -5,10 +5,10 @@ github.com/bmatcuk/doublestar v1.1.1/go.mod h1:UD6OnuiIn0yFxxA2le/rnRU1G4RaI4UvF
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/ecosyste-ms/ecosystems-go v0.1.1 h1:YYiBK9TCCTeE+BtmpN2FssaRFcmF+T0v4LrupIOjehQ=
-github.com/ecosyste-ms/ecosystems-go v0.1.1/go.mod h1:VczXs1CO9nL8XbL1NwvgmwIaqzMsAxcsXnTpRtwi9gU=
-github.com/git-pkgs/enrichment v0.3.0 h1:tsATMAwR/qcSIw4JV37uH2TBgTv415RfJC7w3nzWfD4=
-github.com/git-pkgs/enrichment v0.3.0/go.mod h1:MBv5nhHzjwLxeSgx2+7waCcpReUjhCD+9B0bvufpMO0=
+github.com/ecosyste-ms/ecosystems-go v0.2.0 h1:Nhpg54C+St8Sd/mf8bNJmQqx35ZgHw33TfFoxaXMQI8=
+github.com/ecosyste-ms/ecosystems-go v0.2.0/go.mod h1:CCdzT1iAZirbEZAbFSnWpK88eKKaIWex7gjtZ0UudXA=
+github.com/git-pkgs/enrichment v0.4.0 h1:nG0EH5HrIbbmmLhKp9NcuLZ5d1DOEnRV947tg8a5mh8=
+github.com/git-pkgs/enrichment v0.4.0/go.mod h1:XFASHTtUD8SxDCe3jeObQEBlU+uaMc2oB0vt88/SLIE=
 github.com/git-pkgs/packageurl-go v0.3.1 h1:WM3RBABQZLaRBxgKyYughc3cVBE8KyQxbSC6Jt5ak7M=
 github.com/git-pkgs/packageurl-go v0.3.1/go.mod h1:rcIxiG37BlQLB6FZfgdj9Fm7yjhRQd3l+5o7J0QPAk4=
 github.com/git-pkgs/pom v0.1.4 h1:C6st+XSbF75eKuwfdkDZZtYHoTcaWRIEQYar5VtszUo=
@@ -26,8 +26,10 @@ github.com/github/go-spdx/v2 v2.7.0/go.mod h1:Ftc45YYG1WzpzwEPKRVm9Jv8vDqOrN4gWo
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/juju/gnuflag v0.0.0-20171113085948-2ce1bb71843d/go.mod h1:2PavIy+JPciBPrBUjwbNvtwB6RQlve+hkpll6QSNmOE=
-github.com/oapi-codegen/runtime v1.1.2 h1:P2+CubHq8fO4Q6fV1tqDBZHCwpVpvPg7oKiYzQgXIyI=
-github.com/oapi-codegen/runtime v1.1.2/go.mod h1:SK9X900oXmPWilYR5/WKPzt3Kqxn/uS/+lbpREv+eCg=
+github.com/oapi-codegen/nullable v1.1.0 h1:eAh8JVc5430VtYVnq00Hrbpag9PFRGWLjxR1/3KntMs=
+github.com/oapi-codegen/nullable v1.1.0/go.mod h1:KUZ3vUzkmEKY90ksAmit2+5juDIhIZhfDl+0PwOQlFY=
+github.com/oapi-codegen/runtime v1.4.1 h1:9nwLoI+KrWxzbBcp0jO/R8uXqbik/HUyCvPeU68Y/qo=
+github.com/oapi-codegen/runtime v1.4.1/go.mod h1:GwV7hC2hviaMzj+ITfHVRESK5J2W/GefVwIND/bMGvU=
 github.com/package-url/packageurl-go v0.1.6 h1:YO3p6u1XmCUliivUg/qWphaY8vI6hxSnnPv7Bfg3m5M=
 github.com/package-url/packageurl-go v0.1.6/go.mod h1:nKAWB8E6uk1MHqiS/lQb9pYBGH2+mdJ2PJc2s50dQY0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

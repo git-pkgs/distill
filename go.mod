@@ -3,16 +3,16 @@ module github.com/git-pkgs/distill
 go 1.26
 
 require (
-	github.com/git-pkgs/enrichment v0.4.0
-	github.com/git-pkgs/purl v0.1.12
+	github.com/git-pkgs/enrichment v0.4.1
+	github.com/git-pkgs/purl v0.1.13
 )
 
 require (
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/ecosyste-ms/ecosystems-go v0.2.0 // indirect
 	github.com/git-pkgs/packageurl-go v0.3.1 // indirect
-	github.com/git-pkgs/pom v0.1.4 // indirect
-	github.com/git-pkgs/registries v0.6.1 // indirect
+	github.com/git-pkgs/pom v0.1.5 // indirect
+	github.com/git-pkgs/registries v0.6.2 // indirect
 	github.com/git-pkgs/spdx v0.1.4 // indirect
 	github.com/git-pkgs/vers v0.2.6 // indirect
 	github.com/github/go-spdx/v2 v2.7.0 // indirect

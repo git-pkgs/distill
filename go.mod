@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	github.com/git-pkgs/enrichment v0.4.1
-	github.com/git-pkgs/purl v0.1.13
+	github.com/git-pkgs/purl v0.1.14
 )
 
 require (

@@ -2,6 +2,8 @@ module github.com/git-pkgs/distill
 
 go 1.26
 
+toolchain go1.26.6
+
 require (
 	github.com/git-pkgs/enrichment v0.6.5
 	github.com/git-pkgs/purl v0.1.15

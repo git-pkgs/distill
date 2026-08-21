@@ -5,7 +5,7 @@ go 1.26
 toolchain go1.26.6
 
 require (
-	github.com/git-pkgs/enrichment v0.6.5
+	github.com/git-pkgs/enrichment v0.7.0
 	github.com/git-pkgs/purl v0.1.17
 )
 
@@ -14,7 +14,7 @@ require (
 	github.com/ecosyste-ms/ecosystems-go v0.4.0 // indirect
 	github.com/git-pkgs/packageurl-go v0.3.1 // indirect
 	github.com/git-pkgs/pom v0.1.5 // indirect
-	github.com/git-pkgs/registries v0.6.4 // indirect
+	github.com/git-pkgs/registries v0.8.0 // indirect
 	github.com/git-pkgs/spdx v0.3.0 // indirect
 	github.com/git-pkgs/vers v0.3.1 // indirect
 	github.com/git-pkgs/vulns v0.2.1 // indirect

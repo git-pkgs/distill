@@ -2,7 +2,19 @@
 
 Trains a small multi-label classifier that assigns [oss-taxonomy](https://github.com/ecosyste-ms/oss-taxonomy) terms to a repository from code-derived signals (brief detection output, outline identifiers, structural facts), with the README as an optional and explicitly-distrusted input. An LLM teacher labels a corpus at curation time; the trained student runs offline inside [brief](https://github.com/git-pkgs/brief) at scan time and generalises to repos the teacher never saw.
 
-Needs `brief` and `claude` on PATH.
+## Installation
+
+```sh
+go install github.com/git-pkgs/distill/cmd/distill@latest
+```
+
+Put Go's binary installation directory on `PATH`. Build from a checkout with:
+
+```sh
+go build -o distill ./cmd/distill
+```
+
+Install `brief` and `claude` on `PATH` to use `classify` and `corpus`. The `extract` command needs `brief`.
 
 ## classify (teacher)
 
@@ -45,3 +57,7 @@ go run ./tools/gencorpus -fetch=false   # rebuild seed from existing top-deps.tx
 ```
 
 `tools/genvocab` reads a local oss-taxonomy `combined-taxonomy.json` (`-taxonomy` flag, defaults to `~/code/ecosystems/oss-taxonomy`) and writes the embedded vocabulary. `tools/gencorpus` builds the corpus seed from packages.ecosyste.ms plus `corpus/knowledge.txt`.
+
+## License
+
+[MIT](LICENSE).

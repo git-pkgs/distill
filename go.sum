@@ -7,8 +7,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/ecosyste-ms/ecosystems-go v0.5.0 h1:qZqgar3Do9RrtW327OXlsrGKiRvNdeX8CmXb1aX4Njo=
 github.com/ecosyste-ms/ecosystems-go v0.5.0/go.mod h1:IhsYBZfxkofxya0O1O2DlhDt281utWJ6VQO0mPVb99I=
-github.com/git-pkgs/enrichment v0.7.4 h1:owiCKjITG8tNxBikcyUCDuDf1i3C/+Yoa5yJseuqIjA=
-github.com/git-pkgs/enrichment v0.7.4/go.mod h1:ZN/cH4PnmzsapEVPvmAwREP7+ox+RX0yfR6KvoB8xKE=
+github.com/git-pkgs/enrichment v0.7.5 h1:jbfFzf7+HSS7el8AuMri4vHXq2izIIZDVIU0uYI5LFM=
+github.com/git-pkgs/enrichment v0.7.5/go.mod h1:TbxC/nGQN96YCbdoiDs8a9z3gk2zXmLVS1989/jvnsU=
 github.com/git-pkgs/pom v0.1.8 h1:mXCuWw6XkrKKZb6IurRZyIznYLPhV5AYg5ZO38Uj/l8=
 github.com/git-pkgs/pom v0.1.8/go.mod h1:sQBeYRzjCUn77fcABPn6I/a1aBHFxm55jTmkNxYtGtw=
 github.com/git-pkgs/purl v0.1.24 h1:JMEB1uNWI+baEpl6AeVx+Kfq1c+xkou+THxa5KJ3MrU=

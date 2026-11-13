@@ -6,7 +6,7 @@ toolchain go1.26.7
 
 require (
 	github.com/git-pkgs/enrichment v0.7.5
-	github.com/git-pkgs/purl v0.1.24
+	github.com/git-pkgs/purl v0.2.1
 )
 
 require (
